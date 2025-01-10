@@ -4,24 +4,25 @@ spring:
 
   # Datasource configuration
   datasource:
-    url: jdbc:h2:mem:hedwig
-    driverClassName: org.h2.Driver
-    username: hedwig
-    password: hedwig
+    url: jdbc:postgresql://localhost:5432/testdatabase
+    driver-class-name: org.postgresql.Driver
+    username: nitesh
+    password: mypassword
+    platform: postgres
+    hikari:
+      pool-name: HikariCP
+      maximum-pool-size: 100
 
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-
-  h2:
-    console:
-      enabled: true
+    database: POSTGRESQL
 
   # Flyway configuration
   flyway:
     enabled: true
-    placeholder-prefix: "$$$"
-    # placeholder-suffix: "$$$"
+    placeholder-prefix: "$$${"
+    placeholder-suffix: "}$$$"
 
   # Java Mail configuration
   mail:
