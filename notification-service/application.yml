@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: notification-service
+  server:
+    port: 9091
+    servlet:
+      context-path: /notification-service
+  datasource:
+    url: jdbc:h2:mem:hedwig
+    driverClassName: org.h2.Driver
+    username: hedwig
+    password: 
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+      show-sql: true
+  h2:
+    console:
+      enabled: true
+  flyway:
+    enabled: true
+    placeholder-prefix: $$$
+    # placeholder-suffix: $$$  # Uncomment if needed
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: <GMAIL>  # Replace with actual email
+    password: <PASSWORD>  # Replace with actual password
+    port: 587
+    protocol: smtp
+    test-connection: false
+    properties:
+      mail:
+        debug: true
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
