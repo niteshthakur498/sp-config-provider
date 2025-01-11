@@ -6,9 +6,10 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/testdatabase
     driver-class-name: org.postgresql.Driver
-    username: nitesh
-    password: mypassword
+    username: ${SPRING_DATASOURCE_USERNAME:nitesh}
+    password: ${SPRING_DATASOURCE_PASSWORD:mypassword}
     platform: postgres
+    schema: ${DB_SCHEMA_NAME:notification_schema}  # Default schema for JPA
     hikari:
       pool-name: HikariCP
       maximum-pool-size: 100
@@ -17,10 +18,14 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     database: POSTGRESQL
+    properties:
+      hibernate:
+        default_schema: ${DB_SCHEMA_NAME:notification_schema}
 
   # Flyway configuration
   flyway:
     enabled: true
+    schemas: ${DB_SCHEMA_NAME:notification_schema}  # Schema for Flyway migrations
     placeholder-prefix: "$$${"
     placeholder-suffix: "}$$$"
 
